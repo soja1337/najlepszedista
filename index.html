@@ -27,7 +27,7 @@
         width: 120px;
         min-height: 620px;
         padding: 10px;
-        cursor: pointer; 
+        cursor: pointer;
       }
 
       #content {
@@ -64,6 +64,7 @@
       </div>
 
       <div id="nav" onclick="loadPage(event)">
+        <div data-page="home">Strona Główna</div>
         <div data-page="debian">Debian</div>
         <div data-page="arch">Arch Linux</div>
         <div data-page="ubuntu">Ubuntu</div>
@@ -72,7 +73,6 @@
       </div>
 
       <div id="content">
-        <!-- Treść podstrony będzie tutaj dynamicznie ładowana -->
       </div>
 
       <div id="ad">
@@ -88,13 +88,18 @@
     <script>
       function loadPage(event) {
         var selectedDistribution = event.target.dataset.page;
-        var contentUrl = selectedDistribution + ".html"; // Nazwa pliku HTML dla każdej dystrybucji
+        var contentUrl;
 
-        // Pobierz treść podstrony asynchronicznie
+        if (selectedDistribution === "home") {
+          // Dodaj kod do obsługi odnośnika do strony głównej
+          contentUrl = "strona_glowna.html";
+        } else {
+          contentUrl = selectedDistribution + ".html";
+        }
+
         fetch(contentUrl)
           .then(response => response.text())
           .then(data => {
-            // Ustaw treść w divie "content" na pobraną z podstrony
             document.getElementById('content').innerHTML = data;
           })
           .catch(error => console.error('Błąd ładowania treści:', error));
