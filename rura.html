@@ -1,0 +1,105 @@
+<!DOCTYPE HTML>
+<html lang="pl">
+  <head>
+    <meta charset="utf-8"/>
+    <title>Najlepsze Dystrybucje Linuxa!</title>
+    <meta name="description" content="Przed tobą moja subiektywna lista najlepszych dystrybucji Linuxa"/>
+    <meta name="keywords" content="Linux, najlepsze systemy, najlepsze dystrybucje Linuxa, top distra dla początkujących"/>
+    <meta name="author" content="Jan Soból"/>
+
+    <style>
+      #container {
+        width: 1000px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      #logo {
+        background-color: black;
+        color: white;
+        text-align: center;
+        padding: 15px;
+      }
+
+      #nav {
+        float: left;
+        background-color: lightgray;
+        width: 120px;
+        min-height: 620px;
+        padding: 10px;
+        cursor: pointer; 
+      }
+
+      #content {
+        float: left;
+        padding: 20px;
+        width: 640px;
+      }
+
+      #ad {
+        float: left;
+        width: 160px;
+        min-height: 620px;
+        padding: 10px;
+        background-color: lightgray;
+      }
+
+      #footer {
+        clear: both;
+        background-color: black;
+        color: white;
+        text-align: center;
+        padding: 20px;
+      }
+    </style>
+
+  </head>
+
+  <body>
+
+    <div id="container">
+
+      <div id="logo">
+        <h1>Top 5 Najlepszych Dystrybucji Linuxa!</h1>
+      </div>
+
+      <div id="nav" onclick="loadPage(event)">
+        <div data-page="debian">Debian</div>
+        <div data-page="arch">Arch Linux</div>
+        <div data-page="ubuntu">Ubuntu</div>
+        <div data-page="manjaro">Manjaro</div>
+        <div data-page="fedora">Fedora</div>
+      </div>
+
+      <div id="content">
+        <!-- Treść podstrony będzie tutaj dynamicznie ładowana -->
+      </div>
+
+      <div id="ad">
+        <img src="reklama.jpg"/>
+      </div>
+
+      <div id="footer">
+        Jan Soból &copy; Wszelkie prawa zastrzeżone!
+      </div>
+
+    </div>
+
+    <script>
+      function loadPage(event) {
+        var selectedDistribution = event.target.dataset.page;
+        var contentUrl = selectedDistribution + ".html"; // Nazwa pliku HTML dla każdej dystrybucji
+
+        // Pobierz treść podstrony asynchronicznie
+        fetch(contentUrl)
+          .then(response => response.text())
+          .then(data => {
+            // Ustaw treść w divie "content" na pobraną z podstrony
+            document.getElementById('content').innerHTML = data;
+          })
+          .catch(error => console.error('Błąd ładowania treści:', error));
+      }
+    </script>
+
+  </body>
+</html>
