@@ -8,6 +8,15 @@
     <meta name="author" content="Jan Soból"/>
 
     <style>
+      @font-face {
+        font-family: 'GoogleSans';
+        src: url('GoogleSans-Regular.ttf') format('truetype');
+      }
+
+      body {
+        font-family: 'GoogleSans', sans-serif;
+      }
+
       #container {
         width: 1000px;
         margin-left: auto;
@@ -86,12 +95,16 @@
     </div>
 
     <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        // Automatyczne wczytywanie strony głównej po otwarciu strony
+        loadPage({ target: { dataset: { page: "home" } } });
+      });
+
       function loadPage(event) {
         var selectedDistribution = event.target.dataset.page;
         var contentUrl;
 
         if (selectedDistribution === "home") {
-          // Dodaj kod do obsługi odnośnika do strony głównej
           contentUrl = "strona_glowna.html";
         } else {
           contentUrl = selectedDistribution + ".html";
